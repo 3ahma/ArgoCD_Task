@@ -1,0 +1,12 @@
+# values-prod.yaml
+# High-Availability configuration plus the LoadBalancer service type
+server:
+  replicas: 2
+  service:
+    type: LoadBalancer
+redis-ha:
+  enabled: true
+repoServer:
+  replicas: 2
+applicationSet:
+  replicas: 2
