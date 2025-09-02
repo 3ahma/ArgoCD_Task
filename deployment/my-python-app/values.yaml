@@ -1,23 +1,23 @@
-# In my-python-app/values.yaml
-
-# Change the image details to match what you built
 image:
   repository: my-python-app
   pullPolicy: IfNotPresent
   tag: "1.0"
 
-# Configure the service to listen on port 80 and target your app's port 5000
 service:
-  type: ClusterIP # Ingress will handle external access, so this can be internal
+  type: ClusterIP
   port: 80
-  targetPort: 8000 # Add this line to specify your container's port
+  targetPort: 8000
 
-# Enable and configure the Ingress
 ingress:
   enabled: true
-  className: "nginx" # This tells Kubernetes to use your NGINX ingress controller
+  className: "nginx"
   hosts:
-    - host: python-app.local # The custom domain name for your app
+    - host: python-app.local
       paths:
         - path: /
           pathType: ImplementationSpecific
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
