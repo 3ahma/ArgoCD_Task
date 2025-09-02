@@ -1,5 +1,5 @@
 image:
-  repository: my-python-app
+  repository: my_app
   pullPolicy: IfNotPresent
   tag: "1.0"
 
