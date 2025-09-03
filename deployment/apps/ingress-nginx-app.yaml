@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ingress-nginx
+  namespace: argocd-dev
+spec:
+  project: default
+  
+  sources:
+    - repoURL: https://kubernetes.github.io/ingress-nginx
+      chart: ingress-nginx
+      targetRevision: 4.10.1
+      helm:
+        valueFiles:
+          - $values/deployment/ingress_app/helm/ingress_nginx_values.yaml
+
+    - repoURL: 'git@github.com:3ahma/ArgoCD_Task.git'
+      targetRevision: dev
+      ref: values
+
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: ingress-nginx
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

@@ -1,0 +1,5 @@
+# values-dev.yaml
+server:
+  service:
+    # Use MetalLB to get an external IP
+    type: LoadBalancer
